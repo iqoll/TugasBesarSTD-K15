@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="MLL.cpp" />
+		<Unit filename="MLL.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
