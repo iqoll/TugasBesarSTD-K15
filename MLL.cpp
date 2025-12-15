@@ -4,7 +4,8 @@
 using namespace std;
 
 // inisiasi data keluarga (parent - children)
-void InisiasiDataKeluarga(list_orangTua &L1, list_anak &L2) {
+void InisiasiDataKeluarga(list_orangTua &L1, list_anak &L2)
+{
     L1.first = NULL;
     L2.first = NULL;
 
@@ -44,4 +45,111 @@ void InisiasiDataKeluarga(list_orangTua &L1, list_anak &L2) {
     R2->next = NULL;
 
     P2->anak.first = R2;
+}
+
+// main menu
+int showMainMenu()
+{
+    int pilihan;
+
+// Bersihkan layar
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+
+    cout << "===================================================" << endl;
+    cout << "           APLIKASI DATA KELUARGA (MLL M:N)        " << endl;
+    cout << "===================================================" << endl;
+    cout << "           :: MANAJEMEN DATA ORANG TUA (L1) ::     " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << " 1. Tambah Data Orang Tua Baru (Insert First) " << endl;
+    cout << " 2. Cari Data Orang Tua " << endl;
+    cout << " 3. Hapus Data Orang Tua & Semua Relasinya " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << "           :: MANAJEMEN DATA ANAK (L2) ::          " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << " 4. Tambah Data Anak Baru (Insert Last) " << endl;
+    cout << " 5. Cari Data Anak " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << "           :: MANAJEMEN RELASI ::                  " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << " 6. Hubungkan Orang Tua ke Anak (Buat Relasi) " << endl;
+    cout << " 7. Hapus Relasi Tertentu (Putus Hubungan Ortu-Anak)" << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << "           :: PELAPORAN & ANALISIS ::              " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << " 8. Tampilkan Seluruh Data Keluarga (Ortu & Anak)" << endl;
+    cout << " 9. Cari Anak dari Orang Tua Tertentu " << endl;
+    cout << " 10. Hitung Jumlah Anak dari Orang Tua Tertentu " << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << " 0. KELUAR DARI PROGRAM " << endl;
+    cout << "===================================================" << endl;
+    cout << "Masukkan Pilihan Anda (0-10): ";
+
+    // Memastikan input adalah integer yang valid
+    if (!(cin >> pilihan))
+    {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        pilihan = -1; // Set ke nilai invalid
+    }
+
+    return pilihan;
+}
+
+// handler function
+void handleInsertParent(list_orangTua &L)
+{
+    infotype_orangTua infoBaru;
+    cout << "\n--- TAMBAH ORANG TUA BARU ---\n";
+    // ... (Semua kode cin, getline, validasi usia yang panjang) ...
+    cout << "Nama: ";
+    cin.ignore();
+    getline(cin, infoBaru.nama);
+
+    cout << "Jenis (ayah/ibu): ";
+    cin.ignore();
+    getline(cin, infoBaru.jenis);
+
+    cout << "usia: ";
+    while (!(cin >> infoBaru.usia))
+    {
+        cout << "Input usia tidak valid. Masukkan angka: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+    }
+
+    // --- 2. PROSES STRUKTUR DATA (Panggilan ke fungsi MLL inti) ---
+    adr_orangTua P_Baru = createNewParent(infoBaru);
+    insertFirstParent(L, P_Baru);
+
+    cout << "\n[SUCCESS] Orang Tua " << infoBaru.nama << " berhasil ditambahkan." << endl;
+}
+void insertFirstParent(list_orangTua &L, adr_orangTua P)
+{
+    // Kasus 1: List kosong
+    if (L.first == NULL)
+    {
+        L.first = P;
+    }
+    // Kasus 2: List tidak kosong
+    else
+    {
+        P->next = L.first;
+
+        L.first = P;
+    }
+}
+
+adr_orangTua createNewParent(infotype_orangTua info)
+{
+    adr_orangTua P = new elm_orangTua;
+
+    P->info = info;
+    P->next = NULL;
+    P->anak.first = NULL;
+
+    return P;
 }
