@@ -37,6 +37,7 @@ int main()
             break;
         case 6:
             // Panggil HubungkanParentToChild
+            handleHubungkanParentToChild(L_ORTU, L_ANAK);
             break;
         case 7:
             // Panggil deleteRelation

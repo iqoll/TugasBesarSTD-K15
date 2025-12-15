@@ -68,6 +68,8 @@ int showMainMenu();
 void handleInsertParent(list_orangTua &L);
 void handleInsertChild(list_anak &L);
 
+void handleHubungkanParentToChild(list_orangTua &L1, list_anak &L2);
+
 // --- FUNGSI/PROSEDUR UTAMA (PROTOTYPE) ---
 // 1. Insert data parent dari depan
 void insertFirstParent(list_orangTua &L, adr_orangTua P);
@@ -94,7 +96,7 @@ void insertLastChild(list_anak &L, adr_anak C);
 adr_anak createNewChild(infotype_anak info); // Fungsi pembantu untuk membuat node baru
 
 // 7. Menghubungkan data parent ke data child
-bool hubungkanParentToChild(list_orangTua &L_Ortu, adr_anak C, string namaAyah, string namaIbu);
+bool hubungkanParentToChild(adr_orangTua P, adr_anak C);
 adr_relation createNewRelation(adr_anak C); // C adalah pointer ke anak
 
 // 8. Menampilkan seluruh data parent beserta childnya

@@ -156,6 +156,12 @@ void handleInsertChild(list_anak &L)
     cout << "\n[SUCCESS] Anak " << infoBaru.nama << " berhasil ditambahkan." << endl;
 }
 
+// NOTE: Perlu buat dulu fungsi findParent, dan findChild
+void handleHubungkanParentToChild(list_orangTua &L1, list_anak &L2)
+{
+    // ...
+}
+
 void insertFirstParent(list_orangTua &L, adr_orangTua P)
 {
     // Kasus 1: List kosong
@@ -167,7 +173,6 @@ void insertFirstParent(list_orangTua &L, adr_orangTua P)
     else
     {
         P->next = L.first;
-
         L.first = P;
     }
 }
@@ -194,7 +199,8 @@ void insertLastChild(list_anak &L, adr_anak C)
     else
     {
         adr_anak last = L.first;
-        while(last->next != NULL) {
+        while (last->next != NULL)
+        {
             last = last->next;
         }
         last->next = C;
@@ -206,7 +212,24 @@ adr_anak createNewChild(infotype_anak info)
     adr_anak C = new elm_anak;
 
     C->info = info;
-    C->next = NULL;          // Next node di List L2
+    C->next = NULL; // Next node di List L2
 
     return C;
+}
+
+// NOTE : Perlu buat dulu fungsi createNewRelation
+bool hubungkanParentToChild(adr_orangTua P, adr_anak C)
+{
+    if (P == NULL || C == NULL)
+    {
+        return false; // Pointer tidak valid
+    }
+    // 1. Buat Node Relasi baru
+    adr_relation R_Baru = createNewRelation(C);
+
+    // 2. Sisipkan Node Relasi ke list relasi Parent (P->anak)
+    R_Baru->next = P->anak.first;
+    P->anak.first = R_Baru;
+
+    return true;
 }
