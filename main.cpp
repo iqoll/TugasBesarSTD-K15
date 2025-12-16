@@ -24,32 +24,47 @@ int main()
             break;
         case 2:
             // Panggil findParent
+            handleFindParent(L_ORTU);
             break;
         case 3:
-            // Panggil DeleteParent
+            // Panggil deleteParent
+            handleDeleteParent(L_ORTU);
             break;
         case 4:
+            // panggil showAllParent
+            handleShowAllParent(L_ORTU);
+            break;
+        case 5:
             // Panggil insertLastChild
             handleInsertChild(L_ANAK);
             break;
-        case 5:
-            // Panggil findChild
-            break;
         case 6:
-            // Panggil HubungkanParentToChild
-            handleHubungkanParentToChild(L_ORTU, L_ANAK);
+            // Panggil findChild
+            handleFindChild(L_ANAK);
             break;
         case 7:
-            // Panggil deleteRelation
+            // Panggil showAllChild
+            handleShowAllChild(L_ANAK);
             break;
         case 8:
-            // Panggil ShowAllParentAndChild
+            // Panggil HubungkanParentToChild
+            handleCreateRelation(L_ORTU, L_ANAK);
             break;
         case 9:
-            // Panggil findChildOnParent
+            // Panggil deleteRelation
+            handleDeleteRelation(L_ORTU);
             break;
         case 10:
+            // Panggil ShowAllParentAndChild
+            handleShowAllParentAndChild(L_ORTU);
+            break;
+        case 11:
+            // Panggil findChildOnParent
+            handleFindChildOnParent(L_ORTU);
+            break;
+        case 12:
             // Panggil countChildOfParent
+            handleCountChildOfParent(L_ORTU);
             break;
         case 0:
             cout << "Terima kasih telah menggunakan program." << endl;
